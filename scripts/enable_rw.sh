@@ -21,7 +21,7 @@ for i in 3 5; do
   mkdir -p mnt
   mount -o ro /dev/sda$i mnt
 
-  tar -cpPf /tmp/rootfs-backup.tar mnt/*
+  (cd mnt; tar -cpPf /tmp/rootfs-backup.tar *)
 
   umount mnt
   yes | mkfs.ext4 /dev/sda$i
