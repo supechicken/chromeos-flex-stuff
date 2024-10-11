@@ -1,7 +1,7 @@
 #!/bin/bash -eu
 
 default="quiet init=/sbin/init rootwait ro noresume loglevel=7 noinitrd console= kvm-intel.vmentry_l1d_flush=always i915.modeset=1 cros_efi"
-verbose="panic=60 init=/sbin/init rootwait ro noresume loglevel=7 noinitrd kvm-intel.vmentry_l1d_flush=always i915.modeset=1 cros_efi"
+verbose="init=/sbin/init rootwait ro noresume noinitrd kvm-intel.vmentry_l1d_flush=always i915.modeset=1 cros_efi"
 devmode="iommu=pt iommu.passthrough=1 ${verbose} cros_debug"
 
 function get_partuuid() {
