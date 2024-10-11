@@ -3,6 +3,9 @@ set -eux
 
 ROOTDIR="$(readlink -f "${PWD}/../")"
 
+mount -o remount,size=8G /run/archiso/cowspace || true
+mount -o remount,size=8G /tmp || true
+
 pacman -Sy git
 
 cd /tmp
