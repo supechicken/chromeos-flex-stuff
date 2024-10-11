@@ -21,7 +21,7 @@ for i in ${ROOT_ID:-3}; do
   mkdir -p mnt
   mount -o ro /dev/sda$i mnt
 
-  (cd mnt; tar -cpP --selinux --acls --xattr -f /tmp/rootfs-backup.tar *)
+  (cd mnt; tar -cpP --selinux --acls --xattrs -f /tmp/rootfs-backup.tar *)
 
   umount mnt
   yes | mkfs.ext4 /dev/sda$i
