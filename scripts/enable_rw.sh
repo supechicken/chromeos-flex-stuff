@@ -17,11 +17,11 @@ git clone https://gitlab.com/kernel-firmware/linux-firmware.git --depth=1
 e2fsck -f /dev/sda1
 tune2fs -m 0 /dev/sda1
 
-for i in 3 5; do
+for i in ${ROOT_ID:-3}; do
   mkdir -p mnt
   mount -o ro /dev/sda$i mnt
 
-  (cd mnt; tar -cpPf /tmp/rootfs-backup.tar *)
+  (cd mnt; tar -cpP --selinux --acls --xattr -f /tmp/rootfs-backup.tar *)
 
   umount mnt
   yes | mkfs.ext4 /dev/sda$i
@@ -38,6 +38,9 @@ for i in 3 5; do
 
     cp -r /tmp/linux-firmware lib/firmware
     tar -xf $ROOTDIR/kernel/6.6.54/modules-6.6.54.tar.xz
+
+    cp -r $ROOTDIR/sudo/minijail.so usr/lib64/minijail-hack.so
+    sed -i '1s,^,env LD_PRELOAD=/usr/lib64/minijail-hack.so\n,' etc/init/ui.conf
   )
 
   umount mnt
