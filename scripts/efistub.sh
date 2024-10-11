@@ -17,5 +17,5 @@ function new_entry() {
     --unicode "root=PARTUUID=${2} ${3}"
 }
 
-new_entry 'ChromeOS Flex (ROOT-A)' sda3 "${devmode}"
-new_entry 'ChromeOS Flex (ROOT-B)' sda5 "${devmode}"
+new_entry 'ChromeOS Flex (ROOT-A)' "$(get_partuuid sda3)" "${devmode}"
+new_entry 'ChromeOS Flex (ROOT-B)' "$(get_partuuid sda5)" "${devmode}"
