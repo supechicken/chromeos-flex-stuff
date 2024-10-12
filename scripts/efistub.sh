@@ -2,7 +2,7 @@
 
 default="quiet init=/sbin/init rootwait ro noresume loglevel=7 noinitrd console= kvm-intel.vmentry_l1d_flush=always i915.modeset=1 cros_efi"
 verbose="init=/sbin/init rootwait ro noresume noinitrd kvm-intel.vmentry_l1d_flush=always i915.modeset=1 cros_efi"
-devmode="iommu=pt iommu.passthrough=1 ${verbose} cros_debug"
+devmode="iommu=pt iommu.passthrough=1 lsm=landlock,lockdown,yama,loadpin,safesetid,integrity,selinux ${verbose} cros_debug"
 
 function get_partuuid() {
   blkid | grep "/dev/${1}:" | sed 's/.*PARTUUID="\(.*\)"/\1/'
