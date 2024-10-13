@@ -12,7 +12,7 @@ function new_entry() {
   efibootmgr --create \
     --label "${1}" \
     --disk /dev/sda \
-    --part 2 \
+    --part 1 \
     --loader /ChromeOS/kernel \
     --unicode "root=PARTUUID=${2} ${3}"
 }
